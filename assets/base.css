@@ -3168,6 +3168,15 @@ details-disclosure > details {
   margin-bottom: 1rem;
 }
 
+
+/* Split Hero Modifiers */
+@media (min-width: 750px) {
+  /* When this class is added, the first child (image) moves to the end */
+  .split-hero--reverse .split-hero__inner > *:first-child {
+    order: 2;
+  }
+}
+
 @media (min-width: 750px) {
   .split-hero__inner {
     grid-template-columns: 1fr 1fr;
