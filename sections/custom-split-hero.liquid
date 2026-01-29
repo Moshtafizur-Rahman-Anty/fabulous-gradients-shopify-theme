@@ -1,0 +1,117 @@
+<section class="split-hero color-{{ section.settings.color_scheme }} gradient {% if section.settings.layout == 'right' %} split-hero--reverse{% endif %}">
+  <div class="split-hero__inner page-width">
+    
+    {%- comment -%} 
+      Media Column: This is the first child. 
+      On desktop, if 'split-hero--reverse' is present, this moves to order: 2 (the right).
+    {%- endcomment -%}
+    <div class="split-hero__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1500 | image_tag:
+          loading: 'lazy',
+          sizes: "(min-width: 750px) 50vw, 100vw",
+          widths: '375, 550, 750, 1100, 1500',
+          class: 'split-hero__image'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Content Column {%- endcomment -%}
+    <div class="split-hero__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="split-hero__heading {{ section.settings.heading_size }}">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="split-hero__text rte">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="button button--primary">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "★ Custom: Split Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "left", "label": "Image Left" },
+        { "value": "right", "label": "Image Right" }
+      ],
+      "default": "left",
+      "label": "Desktop Image Placement"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background-2" }
+      ],
+      "default": "background-1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Custom Split Hero",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Explain the unique value of your brand here.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop Now",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "★ Custom: Split Hero"
+    }
+  ]
+}
+{% endschema %}
