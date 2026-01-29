@@ -3147,3 +3147,30 @@ details-disclosure > details {
     100% { transform: rotate(360deg) translateX(1em) rotate(-360deg) scale(1.2); }
   }
 }
+
+/* Split Hero */
+.split-hero {
+  padding: 4rem 0;
+}
+
+.split-hero__inner {
+  display: grid;
+  gap: 2rem;
+}
+
+.split-hero__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.split-hero__heading {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 750px) {
+  .split-hero__inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
